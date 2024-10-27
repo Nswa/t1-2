@@ -1,0 +1,8 @@
+.editor-container {
+	padding-left: 5rem;
+}
+
+:global(.editor-container) {
+    width: 100%;    
+    height: 100%;
+}
