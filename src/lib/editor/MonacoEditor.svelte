@@ -18,21 +18,6 @@
 				configureGenesisDarkTheme(monaco); // Configure the custom theme
 				setupGenesisLanguage(monaco); // Initialize Genesis language support
 
-				// Update placeholder decoration color to match light theme
-				const placeholderDecoration = {
-					range: new monaco.Range(1, 1, 1, 1),
-					options: {
-						after: {
-							content: ' continue typing...',
-							color: '#9E9E9E', // Changed from #4B5563 to a lighter gray
-							fontStyle: 'italic',
-							margin: '0 0 0 2px' // Reduced margin
-						},
-						isWholeLine: false, // Changed to false
-						stickiness: monaco.editor.TrackedRangeStickiness.NeverGrowsWhenTypingAtEdges
-					}
-				};
-
 				editor = monaco.editor.create(monacoElement, {
 					value,
 					language,
@@ -40,32 +25,6 @@
 					automaticLayout: true,
 					wordWrap: 'on',
 					minimap: { enabled: false }
-				});
-
-				// Track decorations
-				let activeDecorations: string[] = [];
-
-				// Update placeholder decorations when content changes
-				editor.onDidChangeModelContent(() => {
-					const model = editor.getModel();
-					const decorations = [];
-
-					for (let lineNumber = 1; lineNumber <= model.getLineCount(); lineNumber++) {
-						const lineContent = model.getLineContent(lineNumber);
-						if (lineContent.trim() === '~') {
-							decorations.push({
-								range: new monaco.Range(
-									lineNumber,
-									2, // Position after the ~
-									lineNumber,
-									2
-								),
-								options: placeholderDecoration.options
-							});
-						}
-					}
-
-					activeDecorations = editor.deltaDecorations(activeDecorations, decorations);
 				});
 
 				// Handle Enter key

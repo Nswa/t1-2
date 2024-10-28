@@ -35,7 +35,7 @@ export const setupGenesisLanguage = (monaco: any) => {
             { token: 'atom.content', foreground: '000000' },  // Black
             { token: 'envelope.open', foreground: '0277BD' },  // Blue
             { token: 'envelope.close', foreground: '0277BD' },  // Blue
-            { token: 'envelope.content', foreground: '2E7D32', fontStyle: 'bold italic' }  // Green
+            { token: 'envelope.content', foreground: '01395a', fontStyle: 'bold' }  // Green
         ],
         colors: {
             'editor.background': '#FFFFFF',

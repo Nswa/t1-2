@@ -1,16 +1,46 @@
-/* Default Dark Theme Variables */
+/* Theme Variables */
 :root {
   --text-primary: #363642;
   --text-secondary: #363642;
   --bg-primary: #f3eded;
   --bg-secondary: #f3eded;
+  --transition-speed: 400ms;
+  --nav-width-collapsed: 5rem;
+  --nav-width-expanded: 16rem;
+  --nav-item-height: 5rem;
+  --hover-bg: #162129;
+  --hover-text: #c1e0ff;
+  --icon-color-primary: #446db8;
+  --icon-color-secondary: #375b9e;
 }
 
+/* Base Styles */
+:global(body) {
+  margin: 0;
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
 
+/* Scrollbar Styles */
+:global(body)::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.5rem;
+}
+
+:global(body)::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+:global(body)::-webkit-scrollbar-thumb {
+  background: #6644b8;
+}
+
+/* Navbar Core Styles */
 .navbar {
   position: fixed;
   background-color: var(--bg-primary);
-  transition: width 600ms ease;
+  transition: width var(--transition-speed) ease;
   overflow: hidden;
 }
 
@@ -24,6 +54,7 @@
   height: 100%;
 }
 
+/* Navigation Items */
 .nav-item {
   width: 100%;
 }
@@ -32,20 +63,12 @@
   margin-top: auto;
 }
 
-.nav-link {
-  display: flex;
-  align-items: center;
-  height: 5rem;
-  color: var(--text-primary);
-  text-decoration: none;
-  filter: grayscale(100%) opacity(0.7);
-  transition: var(--transition-speed);
-}
-
+/* Common styles for nav-link and nav-main */
+.nav-link,
 .nav-main {
   display: flex;
   align-items: center;
-  height: 5rem;
+  height: var(--nav-item-height);
   color: var(--text-primary);
   text-decoration: none;
   filter: grayscale(100%) opacity(0.7);
@@ -54,40 +77,28 @@
 
 .nav-link:hover {
   filter: grayscale(0%) opacity(1);
-  background: #162129; /* Light blue background on hover */
-  color: #c1e0ff; /* Darker blue text on hover */
+  background: var(--hover-bg);
+  color: var(--hover-text);
 }
 
-.link-text {
-  display: none;
-  margin-left: 1rem;
-}
-
-.nav-link svg {
-  width: 2rem;
-  min-width: 2rem;
-  margin: 0 1.5rem;
-}
-
+/* Icon Styles */
+.nav-icon,
+.nav-link svg,
 .nav-main svg {
   width: 2rem;
   min-width: 2rem;
   margin: 0 1.5rem;
 }
 
-.fa-primary,
+.fa-primary {
+  color: var(--icon-color-primary);
+}
+
 .fa-secondary {
-  transition: var(--transition-speed);
+  color: var(--icon-color-secondary);
 }
 
-.nav-item:hover .fa-primary {
-  color: #ffffff; /* not quite of affective */
-}
-
-.nav-item:hover .fa-secondary {
-  color: #000000; /* not quite of affective */
-}
-
+/* Logo Styles */
 .logo {
   font-weight: bold;
   text-transform: uppercase;
@@ -105,30 +116,49 @@
   transition: var(--transition-speed);
 }
 
-.logo-text
-{
+.logo-text {
   display: inline;
   position: absolute;
   left: -999px;
   transition: var(--transition-speed);
 }
 
-.navbar:hover .logo svg {
-  transform: rotate(-180deg);
+/* Link Text */
+.link-text {
+  display: none;
+  margin-left: 1rem;
 }
 
+/* Hover States */
+.navbar:hover {
+  width: var(--nav-width-expanded);
+}
 
+.navbar:hover .logo svg {
+  transform: rotate(-180deg);
+  margin-left: 11rem;
+}
 
-/* Small screens */
+.navbar:hover .logo-text,
+.navbar:hover .link-text {
+  display: inline;
+}
+
+.navbar:hover .logo-text {
+  left: 0;
+}
+
+.nav-item:hover .fa-primary,
+.nav-item:hover .fa-secondary {
+  color: var(--hover-text);
+}
+
+/* Media Queries */
 @media only screen and (max-width: 600px) {
   .navbar {
     bottom: 0;
     width: 100vw;
-    height: 5rem;
-  }
-
-  .logo {
-    display: none;
+    height: var(--nav-item-height);
   }
 
   .navbar-nav {
@@ -138,58 +168,20 @@
   .nav-link {
     justify-content: center;
   }
+
+  .logo {
+    display: none;
+  }
+
+  :global(.editor-container) {
+    padding-left: 0;
+  }
 }
 
-/* Large screens */
 @media only screen and (min-width: 600px) {
   .navbar {
     top: 0;
-    width: 5rem;
+    width: var(--nav-width-collapsed);
     height: 100vh;
   }
-
-  .navbar:hover {
-    width: 16rem;
-  }
-
-  .navbar:hover .link-text {
-    display: inline;
-  }
-
-  .navbar:hover .logo svg
-  {
-    margin-left: 11rem;
-  }
-
-  .navbar:hover .logo-text
-  {
-    left: 0px;
-  }
 }
-
-.nav-icon {
-    width: 2rem;
-    min-width: 2rem;
-    margin: 0 1.5rem;
-    color: #263566;
-}
-
-/* Update colors for better visibility in light theme */
-.fa-primary {
-    color: #446db8;
-}
-
-.fa-secondary {
-    color: #375b9e;
-}
-
-/* Add hover effect for nav items */
-.nav-item:hover .fa-primary {
-    color: #c1e0ff;
-}
-
-.nav-item:hover .fa-secondary {
-    color: #c1e0ff;
-}
-
-/* ... existing code ... */
