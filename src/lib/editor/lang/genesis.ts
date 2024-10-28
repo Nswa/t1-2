@@ -4,46 +4,52 @@ export const setupGenesisLanguage = (monaco: any) => {
     monaco.languages.setMonarchTokensProvider('genesis', {
         tokenizer: {
             root: [
-                // Atom start marker - switches to atom state
-                [/~/, { token: 'atom.marker', next: '@atom' }],
-            ],
-            
-            atom: [
-                // New atom marker - exits current atom and starts new one
-                [/~/, { token: 'atom.marker', next: '@atom' }],
+                // Empty line with just ~
+                [/^~\s*$/, 'atom.marker.inactive'],
+                // Active atom marker with content
+                [/^~(?=.*\S)/, 'atom.marker.active'],
                 
-                // Closet with content (envelope)
+                // Envelope (content within brackets)
                 [/\[/, { token: 'envelope.open', next: '@envelope' }],
                 
-                // Everything else in the atom is atom content
-                [/[^~\[]+/, 'atom.content'],
+                // Regular atom content
+                [/[^~\[\]]+/, 'atom.content'],
             ],
-
+            
             envelope: [
-                // Close envelope
-                [/\]/, { token: 'envelope.close', next: '@atom' }],
-                
-                // Envelope content
+                // Close bracket returns to root state
+                [/\]/, { token: 'envelope.close', next: '@pop' }],
+                // Content inside envelope
                 [/[^\]]+/, 'envelope.content'],
             ]
         }
     });
 
-    monaco.editor.defineTheme('genesis-theme', {
-        base: 'vs-dark',
+    // Define theme rules
+    const theme = {
+        base: 'vs', // Changed from 'vs-dark' to 'vs' for light theme
         inherit: true,
         rules: [
-            // Atom styling
-            { token: 'atom.marker', foreground: '#FF5370', fontStyle: 'bold' },
-            { token: 'atom.content', foreground: '#FFFFFF' },
-            
-            // Envelope styling (closets with content)
-            { token: 'envelope.open', foreground: '#89DDFF' },
-            { token: 'envelope.close', foreground: '#89DDFF' },
-            { token: 'envelope.content', foreground: '#C3E88D', fontStyle: 'italic' }
+            { token: 'atom.marker.active', foreground: 'E53935' },  // Darker red
+            { token: 'atom.marker.inactive', foreground: '9E9E9E', fontStyle: 'italic' }, // Gray
+            { token: 'atom.content', foreground: '000000' },  // Black
+            { token: 'envelope.open', foreground: '0277BD' },  // Blue
+            { token: 'envelope.close', foreground: '0277BD' },  // Blue
+            { token: 'envelope.content', foreground: '2E7D32', fontStyle: 'bold italic' }  // Green
         ],
         colors: {
-            'editor.background': '#292D3E',
+            'editor.background': '#FFFFFF',
+            'editor.foreground': '#000000',
+            'editorLineNumber.foreground': '#9E9E9E',
+            'editorCursor.foreground': '#000000',
+            'editor.selectionBackground': '#E3F2FD',
+            'editor.lineHighlightBackground': '#F5F5F5'
         }
-    });
+    };
+
+    // Register the theme
+    monaco.editor.defineTheme('genesis-theme', theme);
+
+    // Set as default theme
+    monaco.editor.setTheme('genesis-theme');
 };

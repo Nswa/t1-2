@@ -13,14 +13,14 @@
 		value="~This is a regular atom with [an enveloped content] in it
 
 ~Another atom with [multiple] [enveloped] [contents]"
-		language="genesis"	
+		language="genesis"
 		theme="genesis-theme"
 	/>
 	<nav class="navbar">
 		<ul class="navbar-nav">
 			<li class="logo">
 				<a href="/" class="nav-link">
-					<span class="link-text logo-text">basenote</span>
+					<span class="link-text logo-text">genesis</span>
 					<svg
 						aria-hidden="true"
 						focusable="false"
