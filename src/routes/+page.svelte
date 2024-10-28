@@ -1,5 +1,30 @@
-<script>
+<script lang="ts">
 	import MonacoEditor from '$lib/editor/MonacoEditor.svelte';
+	import { saveGenesis } from '$lib/services/firebase';
+
+	let editorComponent: MonacoEditor;
+	let isSaving = false;
+
+	async function handleSave() {
+		if (!editorComponent || isSaving) return;
+
+		try {
+			isSaving = true;
+			const content = editorComponent.getContent();
+			if (!content) {
+				alert('Cannot save empty content');
+				return;
+			}
+
+			await saveGenesis(content);
+			alert('Genesis saved successfully!');
+		} catch (error) {
+			console.error('Error saving genesis:', error);
+			alert('Failed to save genesis');
+		} finally {
+			isSaving = false;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -10,6 +35,7 @@
 </svelte:head>
 <div class="editor-container">
 	<MonacoEditor
+		bind:this={editorComponent}
 		value="~This is a regular atom with [an enveloped content] in it
 
 ~Another atom with [multiple] [enveloped] [contents]"
@@ -61,7 +87,7 @@
 			</li>
 
 			<li class="nav-item">
-				<a href="/" class="nav-link">
+				<button class="nav-link" on:click={handleSave} disabled={isSaving}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -74,8 +100,10 @@
 						/>
 						<path class="fa-primary" d="M13 9h5L13 4v5z" />
 					</svg>
-					<span class="link-text">Unsaved Genesis</span>
-				</a>
+					<span class="link-text">
+						{isSaving ? 'Saving...' : 'Save Genesis'}
+					</span>
+				</button>
 			</li>
 		</ul>
 	</nav>
@@ -110,5 +138,10 @@
 
 	:global(body)::-webkit-scrollbar-thumb {
 		background: #6644b8;
+	}
+
+	.nav-link:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 </style>
