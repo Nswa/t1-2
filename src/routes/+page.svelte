@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
 	import MonacoEditor from '$lib/editor/MonacoEditor.svelte';
 </script>
 
@@ -10,7 +9,13 @@
 	/>
 </svelte:head>
 <div class="editor-container">
-	<MonacoEditor value="console.log('Hello, Monaco!')" language="javascript" theme="vs" />
+	<MonacoEditor
+		value="~This is a regular atom with [an enveloped content] in it
+
+~Another atom with [multiple] [enveloped] [contents]"
+		language="genesis"	
+		theme="genesis-theme"
+	/>
 	<nav class="navbar">
 		<ul class="navbar-nav">
 			<li class="logo">
