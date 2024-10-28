@@ -42,10 +42,20 @@
   transition: var(--transition-speed);
 }
 
+.nav-main {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  filter: grayscale(100%) opacity(0.7);
+  transition: var(--transition-speed);
+}
+
 .nav-link:hover {
   filter: grayscale(0%) opacity(1);
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
+  background: #162129; /* Light blue background on hover */
+  color: #c1e0ff; /* Darker blue text on hover */
 }
 
 .link-text {
@@ -59,17 +69,23 @@
   margin: 0 1.5rem;
 }
 
-.fa-primary {
-  color: #9b9da5;
-}
-
-.fa-secondary {
-  color: #5f6269;
+.nav-main svg {
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1.5rem;
 }
 
 .fa-primary,
 .fa-secondary {
   transition: var(--transition-speed);
+}
+
+.nav-item:hover .fa-primary {
+  color: #ffffff; /* not quite of affective */
+}
+
+.nav-item:hover .fa-secondary {
+  color: #000000; /* not quite of affective */
 }
 
 .logo {
@@ -100,6 +116,8 @@
 .navbar:hover .logo svg {
   transform: rotate(-180deg);
 }
+
+
 
 /* Small screens */
 @media only screen and (max-width: 600px) {
@@ -149,5 +167,29 @@
   }
 }
 
+.nav-icon {
+    width: 2rem;
+    min-width: 2rem;
+    margin: 0 1.5rem;
+    color: #263566;
+}
 
+/* Update colors for better visibility in light theme */
+.fa-primary {
+    color: #446db8;
+}
 
+.fa-secondary {
+    color: #375b9e;
+}
+
+/* Add hover effect for nav items */
+.nav-item:hover .fa-primary {
+    color: #c1e0ff;
+}
+
+.nav-item:hover .fa-secondary {
+    color: #c1e0ff;
+}
+
+/* ... existing code ... */

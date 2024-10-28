@@ -19,7 +19,7 @@
 	<nav class="navbar">
 		<ul class="navbar-nav">
 			<li class="logo">
-				<a href="/" class="nav-link">
+				<a href="/" class="nav-main">
 					<span class="link-text logo-text">genesis</span>
 					<svg
 						aria-hidden="true"
@@ -49,30 +49,32 @@
 
 			<li class="nav-item">
 				<a href="/" class="nav-link">
-					<svg
-						aria-hidden="true"
-						focusable="false"
-						data-prefix="fad"
-						data-icon="cat"
-						role="img"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 512 512"
-						class="svg-inline--fa fa-cat fa-w-16 fa-9x"
-					>
-						<g class="fa-group">
-							<path
-								fill="currentColor"
-								d="M448 96h-64l-64-64v134.4a96 96 0 0 0 192 0V32zm-72 80a16 16 0 1 1 16-16 16 16 0 0 1-16 16zm80 0a16 16 0 1 1 16-16 16 16 0 0 1-16 16zm-165.41 16a204.07 204.07 0 0 0-34.59 2.89V272l-43.15-64.73a183.93 183.93 0 0 0-44.37 26.17L192 304l-60.94-30.47L128 272v-80a96.1 96.1 0 0 0-96-96 32 32 0 0 0 0 64 32 32 0 0 1 32 32v256a64.06 64.06 0 0 0 64 64h176a16 16 0 0 0 16-16v-16a32 32 0 0 0-32-32h-32l128-96v144a16 16 0 0 0 16 16h32a16 16 0 0 0 16-16V289.86a126.78 126.78 0 0 1-32 4.54c-61.81 0-113.52-44.05-125.41-102.4z"
-								class="fa-secondary"
-							></path>
-							<path
-								fill="currentColor"
-								d="M376 144a16 16 0 1 0 16 16 16 16 0 0 0-16-16zm80 0a16 16 0 1 0 16 16 16 16 0 0 0-16-16zM131.06 273.53L192 304l-23.52-70.56a192.06 192.06 0 0 0-37.42 40.09zM256 272v-77.11a198.62 198.62 0 0 0-43.15 12.38z"
-								class="fa-primary"
-							></path>
-						</g>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="nav-icon">
+						<path
+							class="fa-secondary"
+							d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+							fill="currentColor"
+						/>
 					</svg>
-					<span class="link-text">Cats</span>
+					<span class="link-text">New Genesis</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a href="/" class="nav-link">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						class="nav-icon"
+						fill="currentColor"
+					>
+						<path
+							class="fa-secondary"
+							d="M15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992z"
+						/>
+						<path class="fa-primary" d="M13 9h5L13 4v5z" />
+					</svg>
+					<span class="link-text">Unsaved Genesis</span>
 				</a>
 			</li>
 		</ul>
